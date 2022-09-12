@@ -82,7 +82,7 @@ def run():
     plt.xlabel('Time steps')
     plt.ylabel('Episodes')
 
-    plt.savefig('figure_6_3.png')
+    plt.savefig('episodes-vs-time.png')
     plt.close()
 
     # display optimal policy
