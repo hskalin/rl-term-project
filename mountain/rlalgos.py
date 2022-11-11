@@ -570,6 +570,8 @@ class A2CAgent:
         for self.total_step in range(1, num_frames + 1):
             action = self.select_action(state)
             next_state, reward, done = self.step(action)
+
+            print('rew ', reward)
             
             actor_loss, critic_loss = self.update_model()
             actor_losses.append(actor_loss)
@@ -580,36 +582,16 @@ class A2CAgent:
             
             # if episode ends
             if done:         
-                state = env.reset()
+                state = self.env.reset()[0]
                 scores.append(score)
                 score = 0                
             
             # plot
-            if self.total_step % plotting_interval == 0:
-                self._plot(self.total_step, scores, actor_losses, critic_losses)
+            # if self.total_step % plotting_interval == 0:
+            #     self._plot(self.total_step, scores, actor_losses, critic_losses)
         self.env.close()
-    
-    def test(self):
-        """Test the agent."""
-        self.is_test = True
-        
-        state = self.env.reset()
-        done = False
-        score = 0
-        
-        frames = []
-        while not done:
-            frames.append(self.env.render(mode="human"))
-            action = self.select_action(state)
-            next_state, reward, done = self.step(action)
 
-            state = next_state
-            score += reward
-        
-        print("score: ", score)
-        self.env.close()
-        
-        return frames
+        return scores
     
     def _plot(
         self, 
