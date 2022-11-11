@@ -358,7 +358,7 @@ class DQNAgent:
         # reset
         self.env = naive_env
 
-    def _compute_dqn_loss(self, samples: dict[str, np.ndarray]) -> torch.Tensor:
+    def _compute_dqn_loss(self, samples) -> torch.Tensor:
         """Return dqn loss."""
         device = self.device  # for shortening the following lines
         state = torch.FloatTensor(samples["obs"]).to(device)
