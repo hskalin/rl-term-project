@@ -571,7 +571,7 @@ class A2CAgent:
             action = self.select_action(state)
             next_state, reward, done = self.step(action)
 
-            print('rew ', reward)
+            #print('rew ', reward)
             
             actor_loss, critic_loss = self.update_model()
             actor_losses.append(actor_loss)
@@ -585,10 +585,10 @@ class A2CAgent:
                 state = self.env.reset()[0]
                 scores.append(score)
                 score = 0                
-            
+            scores.append(score)
             # plot
-            # if self.total_step % plotting_interval == 0:
-            #     self._plot(self.total_step, scores, actor_losses, critic_losses)
+            if self.total_step % plotting_interval == 0:
+                self._plot(self.total_step, scores, actor_losses, critic_losses)
         self.env.close()
 
         return scores
