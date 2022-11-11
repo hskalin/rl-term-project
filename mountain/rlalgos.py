@@ -527,7 +527,7 @@ class A2CAgent:
         if not self.is_test:
             self.transition.extend([next_state, reward, done])           
     
-        print('reward :', reward)
+        #print('reward :', reward)
         return next_state, reward, done
     
     def update_model(self) -> Tuple[torch.Tensor, torch.Tensor]:
