@@ -140,6 +140,7 @@ class Continuous_MountainCarEnv(gym.Env):
         reward = -1
         if terminated:
             reward = 100.0
+        reward -= abs(self.goal_position - position)
         #reward -= math.pow(action[0], 2) * 0.1
         
 
